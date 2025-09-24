@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Telecom - Login</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        /* Login Container */
+        .login-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            overflow: hidden;
+        }
+        
+        /* Login Header */
+        .login-header {
+            background-color: #e1000a;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .logo-fallback {
+            height: 50px;
+            width: 180px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border-radius: 4px;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .login-header h2 {
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+        
+        /* Login Form */
+        .login-form {
+            padding: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #e1000a;
+            box-shadow: 0 0 0 2px rgba(225, 0, 10, 0.2);
+        }
+        
+        /* Button Styles */
+        .form-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .btn-primary, .btn-secondary {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            flex: 1;
+        }
+        
+        .btn-primary {
+            background-color: #e1000a;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #c10008;
+        }
+        
+        .btn-secondary {
+            background-color: #ecf0f1;
+            color: #2c3e50;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #bdc3c7;
+        }
+        
+        /* Login Footer */
+        .login-footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+        
+        .footer-section p {
+            font-size: 0.9rem;
+        }
+        
+        .footer-section select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #34495e;
+            border-radius: 4px;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+        
+        /* Error message styling */
+        .error-message {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 0.75rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            display: none;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 500px) {
+            .login-container {
+                margin: 1rem;
+                width: calc(100% - 2rem);
+            }
+            
+            .form-buttons {
+                flex-direction: column;
+            }
+            
+            .login-footer {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>   
+    <div class="login-container">
+        <div class="login-header">
+            <div class="logo-fallback">TELECOM</div>
+            <h2>Inventory System</h2>
+        </div>
+        
+        <div class="error-message" id="errorMessage">
+            Please enter both username and password
+        </div>
+        
+        <form class="login-form" id="loginForm">
+            <div class="form-group">
+                <label for="username">User Name</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <div class="form-buttons">
+                <button type="submit" class="btn-primary">Login</button>
+                <button type="button" class="btn-secondary" id="cancelBtn">Cancel</button>
+            </div>
+        </form>
+        
+        <!-- <div class="login-footer">
+            <div class="footer-section">
+                <h4>Login Assistance</h4>
+                <p>Register here</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Accessibility</h4>
+                <p>None</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Language</h4>
+                <select>
+                    <option>English</option>
+                    <option>Urdu</option>
+                </select>
+            </div>
+        </div>
+    </div> -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const username = document.getElementById('username').value;
+                    const password = document.getElementById('password').value;
+                    
+                    // Simple validation
+                    if (username && password) {
+                        // Hide error message if shown
+                        errorMessage.style.display = 'none';
+                        
+                        // Set login status in sessionStorage
+                        sessionStorage.setItem('isLoggedIn', 'true');
+                        sessionStorage.setItem('username', username);
+                        
+                        // Redirect to dashboard
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        // Show error message
+                        errorMessage.style.display = 'block';
+                    }
+                });
+            }
+            
+            if (cancelBtn) {
+                cancelBtn.addEventListener('click', function() {
+                    document.getElementById('username').value = '';
+                    document.getElementById('password').value = '';
+                    errorMessage.style.display = 'none';
+                });
+            }
+            
+            // Focus on username field when page loads
+            document.getElementById('username').focus();
+        });
+    </script>
+</body>
+</html>
